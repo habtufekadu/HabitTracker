@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HabitTracker</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="app-header">
+    <h1 class="app-title">My Habits</h1>
+    <p class="app-date" id="today-date">
+      <!-- JS will put today's date here -->
+    </p>
+  </header>
+
+  <main class="app-main">
+
+    <section class="add-habit-section">
+      <form id="add-habit-form" class="add-habit-form">
+        <label for="habit-input" class="visually-hidden">Habit name</label>
+        <input
+          type="text"
+          id="habit-input"
+          class="habit-input"
+          placeholder="Add a new habit..."
+          required
+        >
+        <button type="submit" class="add-button">Add Habit</button>
+      </form>
+    </section>
+
+    <section class="habits-section">
+      <ul id="habits-container" class="habits-list">
+        <!-- JS will inject habit items here -->
+      </ul>
+    </section>
+
+  </main>
+
+  <footer class="app-footer">
+    <p id="habits-summary" class="habits-summary">
+      <!-- JS will show "3 habits · 2 done today" -->
+    </p>
+  </footer>
+
+  <script src="js/storage.js"></script>
+  <script src="js/script.js"></script>
+
+</body>
+</html>
