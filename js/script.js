@@ -65,14 +65,33 @@ function createHabitElement(habit) {
   li.className = "habit-item";
   li.dataset.id = habit.id;
 
-  li.innerHTML = `
-    <label class="habit-checkbox-label">
-      <input type="checkbox" class="habit-checkbox" ${isDoneToday ? "checked" : ""}>
-      <span class="habit-name">${habit.name}</span>
-    </label>
-    <span class="habit-streak">🔥 ${streak}</span>
-    <button class="delete-button" title="Delete habit">✕</button>
-  `;
+  const label = document.createElement("label");
+  label.className = "habit-checkbox-label";
+
+  const checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+  checkbox.className = "habit-checkbox";
+  checkbox.checked = isDoneToday;
+
+  const nameSpan = document.createElement("span");
+  nameSpan.className = "habit-name";
+  nameSpan.textContent = habit.name;
+
+  label.appendChild(checkbox);
+  label.appendChild(nameSpan);
+
+  const streakSpan = document.createElement("span");
+  streakSpan.className = "habit-streak";
+  streakSpan.textContent = `🔥 ${streak}`;
+
+  const deleteBtn = document.createElement("button");
+  deleteBtn.className = "delete-button";
+  deleteBtn.title = "Delete habit";
+  deleteBtn.textContent = "✕";
+
+  li.appendChild(label);
+  li.appendChild(streakSpan);
+  li.appendChild(deleteBtn);
 
   return li;
 }
@@ -81,9 +100,10 @@ function renderHabits() {
   habitsContainer.innerHTML = "";
 
   if (habits.length === 0) {
-    habitsContainer.innerHTML = `
-      <li class="empty-state">No habits yet. Add one above to get started.</li>
-    `;
+    const emptyItem = document.createElement("li");
+    emptyItem.className = "empty-state";
+    emptyItem.textContent = "No habits yet. Add one above to get started.";
+    habitsContainer.appendChild(emptyItem);
   } else {
     for (const habit of habits) {
       const element = createHabitElement(habit);
