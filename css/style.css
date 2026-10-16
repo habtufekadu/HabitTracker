@@ -183,3 +183,6 @@ body {
   white-space: nowrap;
   border: 0;
 }
+@media (max-width: 500px) {
+  /* rules here only apply when screen is 500px or narrower */
+}
